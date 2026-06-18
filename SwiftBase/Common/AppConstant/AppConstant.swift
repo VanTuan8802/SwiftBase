@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Foundation
+
+struct AppConstants {
+    static let appId = ""
+    static let policyLink = ""
+    static let appLi = "https://apps.apple.com/app/id\(appId)"
+}
