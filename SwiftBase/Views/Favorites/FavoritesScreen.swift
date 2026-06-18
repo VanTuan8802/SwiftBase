@@ -32,5 +32,6 @@ struct FavoritesScreen: View {
             Spacer()
         }
         .padding()
+        .trackScreen(.favorites)
     }
 }

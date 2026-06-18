@@ -34,6 +34,7 @@ struct SearchScreen: View {
             Spacer()
         }
         .padding()
+        .trackScreen(.search)
     }
 }
 

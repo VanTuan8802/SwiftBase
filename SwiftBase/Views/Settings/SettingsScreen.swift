@@ -56,5 +56,6 @@ struct SettingsScreen: View {
         .sheet(isPresented: $showLanguagePicker) {
             LanguageView(mode: .settings)
         }
+        .trackScreen(.settings)
     }
 }

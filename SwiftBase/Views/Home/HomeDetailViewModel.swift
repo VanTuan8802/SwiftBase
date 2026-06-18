@@ -18,12 +18,19 @@ final class HomeDetailViewModel: ObservableObject {
         self.id = id
     }
 
+    /// Back via the in-screen button shows the `interBack` interstitial first.
+    /// (The system swipe-back gesture is unaffected — only this button.)
     func goBack() {
-        app.navi.pop()
+        InterHomeUtil.instance.show(placement: .back) { [weak self] in
+            self?.app.navi.pop()
+        }
     }
 
     func openNext() {
-        app.navi.push(.homeDetail(id: id + 1))
+        InterHomeUtil.instance.show(placement: .home) { [weak self] in
+            guard let self else { return }
+            self.app.navi.push(.homeDetail(id: self.id + 1))
+        }
     }
 
     func goToTop() {

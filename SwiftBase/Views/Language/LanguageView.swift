@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ads_swift
 
 struct LanguageView: View {
 
@@ -32,6 +33,12 @@ struct LanguageView: View {
     /// Drives the "fly" of the tap guide from the row to the done button.
     @Namespace private var guideNS
 
+    /// Native ad shown before any selection (`nativeLanguage`) and the one shown
+    /// after the user picks a language (`nativeLanguageSelect`). One ViewModel per
+    /// placement — never share an instance.
+    @State private var nativeLanguageVM: NativeAdViewModel?
+    @State private var nativeLanguageSelectVM: NativeAdViewModel?
+
     init(mode: Mode = .onboarding) {
         self.mode = mode
     }
@@ -43,6 +50,11 @@ struct LanguageView: View {
     private var showRowGuide: Bool { isGuiding && !hasChosen }
     private var showButtonGuide: Bool { isGuiding && hasChosen }
     private var canConfirm: Bool { hasChosen }
+
+    /// Swap to the post-select native ad once the user has chosen a language.
+    private var currentAdVM: NativeAdViewModel? {
+        hasChosen ? nativeLanguageSelectVM : nativeLanguageVM
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -57,12 +69,20 @@ struct LanguageView: View {
                 .padding(.horizontal)
                 .padding(.top, 8)
             }
+
+            if let vm = currentAdVM {
+                NativeContentView(nativeViewModel: vm, style: .nativeLargeMediaCtaBottom)
+                    .padding(.horizontal)
+                    .padding(.bottom, 8)
+            }
         }
         .onAppear {
             originalLanguage = coordinator.language
             // Settings opens already on the current language; onboarding starts blank.
             if mode == .settings { hasChosen = true }
+            loadAds()
         }
+        .trackScreen(mode == .onboarding ? .language : .settingsLanguage)
     }
 
     private var header: some View {
@@ -139,6 +159,25 @@ struct LanguageView: View {
             if showRowGuide && language == guideLanguage {
                 tapGuide.offset(x: -10, y: 6)
             }
+        }
+    }
+
+    // MARK: - Ads
+
+    /// Load both native placements once. `isEnable` covers the master switch +
+    /// review-block gate, so we never show when disabled.
+    private func loadAds() {
+        let initial = AdUtil.config.nativeLanguage
+        if initial.isEnable, nativeLanguageVM == nil {
+            let vm = NativeAdViewModel(adUnitID: initial.id)
+            vm.refreshAd()
+            nativeLanguageVM = vm
+        }
+        let postSelect = AdUtil.config.nativeLanguageSelect
+        if postSelect.isEnable, nativeLanguageSelectVM == nil {
+            let vm = NativeAdViewModel(adUnitID: postSelect.id)
+            vm.refreshAd()
+            nativeLanguageSelectVM = vm
         }
     }
 

@@ -7,6 +7,7 @@
 
 
 import UIKit
+import FirebaseCore
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
 
@@ -16,8 +17,28 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        // One-time startup work goes here (analytics, crash reporting, etc.).
+        configureFirebase()
+        // Ad SDKs (MobileAds, Facebook, Adjust) are wired in the next phase.
         return true
+    }
+
+    // MARK: - Firebase
+
+    /// Configure Firebase from the per-target plist: `GoogleService-Info-dev.plist`
+    /// for the dev target (`DEV` flag), `GoogleService-Info.plist` for prod.
+    private func configureFirebase() {
+        guard FirebaseApp.app() == nil else { return }
+        #if DEV
+        let resource = "GoogleService-Info-dev"
+        #else
+        let resource = "GoogleService-Info"
+        #endif
+        if let path = Bundle.main.path(forResource: resource, ofType: "plist"),
+           let options = FirebaseOptions(contentsOfFile: path) {
+            FirebaseApp.configure(options: options)
+        } else {
+            FirebaseApp.configure()
+        }
     }
 
     // MARK: - Scene configuration

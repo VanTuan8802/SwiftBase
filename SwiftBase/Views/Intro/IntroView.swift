@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ads_swift
 
 struct IntroView: View {
     @EnvironmentObject private var coordinator: AppFlowCoordinator
@@ -13,6 +14,19 @@ struct IntroView: View {
 
     private let pages = IntroPage.all
     private var isLast: Bool { index == pages.count - 1 }
+
+    /// Page-conditional native ads: first page (`nativeIntro1`) and last page
+    /// (`nativeIntro3`). The middle page intentionally has no ad.
+    @State private var nativeIntro1VM: NativeAdViewModel?
+    @State private var nativeIntro3VM: NativeAdViewModel?
+
+    private var currentAdVM: NativeAdViewModel? {
+        switch index {
+        case 0:                 return nativeIntro1VM
+        case pages.count - 1:   return nativeIntro3VM
+        default:                return nil
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -27,7 +41,30 @@ struct IntroView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
 
+            if let vm = currentAdVM {
+                NativeContentView(nativeViewModel: vm, style: .nativeLargeMediaCtaBottom)
+                    .padding(.horizontal)
+            }
+
             primaryButton
+        }
+        .onAppear { loadAds() }
+        .trackScreen(.intro)
+    }
+
+    /// Load both intro placements up front so they're ready as the user pages.
+    private func loadAds() {
+        let c1 = AdUtil.config.nativeIntro1
+        if c1.isEnable, nativeIntro1VM == nil {
+            let vm = NativeAdViewModel(adUnitID: c1.id)
+            vm.refreshAd()
+            nativeIntro1VM = vm
+        }
+        let c3 = AdUtil.config.nativeIntro3
+        if c3.isEnable, nativeIntro3VM == nil {
+            let vm = NativeAdViewModel(adUnitID: c3.id)
+            vm.refreshAd()
+            nativeIntro3VM = vm
         }
     }
 

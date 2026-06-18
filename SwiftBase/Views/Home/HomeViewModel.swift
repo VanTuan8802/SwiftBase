@@ -14,7 +14,12 @@ final class HomeViewModel: ObservableObject {
 
     @Published var items: [Int] = Array(1...20)
 
+    /// Show the `interHome` interstitial, then navigate. The SDK throttles by
+    /// `intervalShowInter`, so rapid taps won't stack ads; if disabled, the
+    /// callback fires immediately and we just navigate.
     func openItem(_ id: Int) {
-        app.navi.push(.homeDetail(id: id))
+        InterHomeUtil.instance.show(placement: .home) { [weak self] in
+            self?.app.navi.push(.homeDetail(id: id))
+        }
     }
 }
