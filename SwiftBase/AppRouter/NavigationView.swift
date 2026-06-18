@@ -18,6 +18,9 @@ struct NavigationView: View {
             navigation.build(destinationWrapper)
                 .navigationDestination(for: DestinationWrapper.self) { destinationWrapper in
                     navigation.build(destinationWrapper)
+                        // Hide the bottom tab bar on any pushed (inner) screen;
+                        // the tab root keeps it.
+                        .toolbar(.hidden, for: .tabBar)
                 }
                 .sheet(isPresented: navigationController.isPresenting(with: .sheet())) {
                     if let destinationWrapper = navigationController.navigationPresent {

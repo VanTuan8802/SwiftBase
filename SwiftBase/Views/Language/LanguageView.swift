@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ads_swift
+import Factory
 
 struct LanguageView: View {
 
@@ -20,24 +21,18 @@ struct LanguageView: View {
     let mode: Mode
 
     @EnvironmentObject private var coordinator: AppFlowCoordinator
-    @Environment(\.dismiss) private var dismiss
+    @Injected(\.app) private var app
 
-    /// `true` once the user has tapped a row. In onboarding it starts `false` so
-    /// the tap guide has something to point at and "Done" stays disabled.
     @State private var hasChosen = false
 
-    /// The language active when the screen opened — restored if the user backs out
-    /// of the Settings sheet.
     @State private var originalLanguage: AppLanguage = .deviceDefault
 
-    /// Drives the "fly" of the tap guide from the row to the done button.
     @Namespace private var guideNS
 
-    /// Native ad shown before any selection (`nativeLanguage`) and the one shown
-    /// after the user picks a language (`nativeLanguageSelect`). One ViewModel per
-    /// placement — never share an instance.
     @State private var nativeLanguageVM: NativeAdViewModel?
     @State private var nativeLanguageSelectVM: NativeAdViewModel?
+    /// Used when the screen is opened from Settings — shows the shared `nativeAll`.
+    @State private var nativeAllVM: NativeAdViewModel?
 
     init(mode: Mode = .onboarding) {
         self.mode = mode
@@ -51,9 +46,11 @@ struct LanguageView: View {
     private var showButtonGuide: Bool { isGuiding && hasChosen }
     private var canConfirm: Bool { hasChosen }
 
-    /// Swap to the post-select native ad once the user has chosen a language.
+    /// Settings shows the shared `nativeAll`; onboarding swaps to the post-select
+    /// native ad once the user has chosen a language.
     private var currentAdVM: NativeAdViewModel? {
-        hasChosen ? nativeLanguageSelectVM : nativeLanguageVM
+        if mode == .settings { return nativeAllVM }
+        return hasChosen ? nativeLanguageSelectVM : nativeLanguageVM
     }
 
     var body: some View {
@@ -71,7 +68,7 @@ struct LanguageView: View {
             }
 
             if let vm = currentAdVM {
-                NativeContentView(nativeViewModel: vm, style: .nativeLargeMediaCtaBottom)
+                NativeContentView(nativeViewModel: vm, style: .nativeNormalMediaCtaTop)
                     .padding(.horizontal)
                     .padding(.bottom, 8)
             }
@@ -167,6 +164,18 @@ struct LanguageView: View {
     /// Load both native placements once. `isEnable` covers the master switch +
     /// review-block gate, so we never show when disabled.
     private func loadAds() {
+        // Opened from Settings → single shared `nativeAll` placement.
+        if mode == .settings {
+            let all = AdUtil.config.nativeAll
+            if all.isEnable, nativeAllVM == nil {
+                let vm = NativeAdViewModel(adUnitID: all.id)
+                vm.refreshAd()
+                nativeAllVM = vm
+            }
+            return
+        }
+
+        // Onboarding → dedicated language placements (initial + post-select).
         let initial = AdUtil.config.nativeLanguage
         if initial.isEnable, nativeLanguageVM == nil {
             let vm = NativeAdViewModel(adUnitID: initial.id)
@@ -199,7 +208,7 @@ struct LanguageView: View {
             // Already applied; persist + advance to the intro carousel.
             coordinator.didSelectLanguage(coordinator.language)
         case .settings:
-            dismiss()
+            app.navi.pop()
         }
     }
 
@@ -208,13 +217,13 @@ struct LanguageView: View {
         if coordinator.language != originalLanguage {
             coordinator.updateLanguage(originalLanguage)
         }
-        dismiss()
+        app.navi.pop()
     }
 
     /// The looping tap hand. The shared `matchedGeometryEffect` id lets it animate
     /// from the language row up to the done button when a selection is made.
     private var tapGuide: some View {
-        LottieTapView(name: "tap")
+        LottieTapView(name: "tap", tint: .accentColor)
             .frame(width: 64, height: 64)
             .clipped()
             .allowsHitTesting(false)

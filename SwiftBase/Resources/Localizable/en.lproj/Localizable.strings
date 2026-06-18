@@ -46,3 +46,11 @@
 "intro_message_2" = "Reusable modules let you focus on features instead of plumbing.";
 "intro_title_3" = "Ready to ship";
 "intro_message_3" = "Sensible defaults and a tested navigation core, straight out of the box.";
+
+/* Settings actions */
+"rate" = "Rate us";
+"share" = "Share app";
+"privacy_policy" = "Privacy Policy";
+
+/* Splash */
+"loading" = "Loading";

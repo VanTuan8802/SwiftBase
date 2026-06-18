@@ -46,3 +46,11 @@
 "intro_message_2" = "Des modules réutilisables vous permettent de vous concentrer sur les fonctionnalités plutôt que sur la tuyauterie.";
 "intro_title_3" = "Prêt à publier";
 "intro_message_3" = "Des réglages par défaut judicieux et un cœur de navigation testé, prêts à l’emploi.";
+
+/* Settings actions */
+"rate" = "Évaluez-nous";
+"share" = "Partager l'app";
+"privacy_policy" = "Politique de confidentialité";
+
+/* Splash */
+"loading" = "Chargement";

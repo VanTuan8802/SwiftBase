@@ -9,29 +9,14 @@ import SwiftUI
 import Factory
 
 struct FavoritesScreen: View {
-    @StateObject private var viewModel = FavoritesViewModel()
-    // Observe the language so localized text re-reads `.localized` at runtime.
+    // Observe the language so the header re-reads `.localized` at runtime.
     @InjectedObject(\.appFlow) private var appFlow: AppFlowCoordinator
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text("favorites".localized)
-                .font(.largeTitle.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Spacer()
-            if viewModel.isEmpty {
-                VStack(spacing: 12) {
-                    Image(systemName: "heart")
-                        .font(.system(size: 44))
-                        .foregroundStyle(.secondary)
-                    Text("nothing_saved_yet".localized)
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                }
-            }
+        VStack(spacing: 0) {
+            BasicHeaderView("favorites".localized)
             Spacer()
         }
-        .padding()
         .trackScreen(.favorites)
     }
 }

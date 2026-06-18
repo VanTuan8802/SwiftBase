@@ -12,6 +12,10 @@ struct LottieTapView: UIViewRepresentable {
     /// File name (without extension) of the animation in the bundle.
     let name: String
 
+    /// Optional recolor. When set, every colored layer of the animation is
+    /// tinted to this color — used to match the app's accent / brand color.
+    var tint: Color? = nil
+
     func makeUIView(context: Context) -> LottieAnimationView {
         let view = LottieAnimationView()
         // Try the bundle root first, then the `Json` subdirectory (depends on how
@@ -21,6 +25,8 @@ struct LottieTapView: UIViewRepresentable {
         view.loopMode = .loop
         view.contentMode = .scaleAspectFit
         view.backgroundBehavior = .pauseAndRestore
+
+        applyTint(to: view)
 
         // Lottie's intrinsic size is the animation's native size (here 600×600).
         // Drop the layout priorities so the SwiftUI `.frame(...)` wins instead of
@@ -35,8 +41,16 @@ struct LottieTapView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: LottieAnimationView, context: Context) {
+        applyTint(to: uiView)
         if !uiView.isAnimationPlaying {
             uiView.play()
         }
+    }
+
+    /// Recolor every fill/stroke (`**.Color`) of the animation to `tint`.
+    private func applyTint(to view: LottieAnimationView) {
+        guard let tint else { return }
+        let provider = ColorValueProvider(UIColor(tint).lottieColorValue)
+        view.setValueProvider(provider, keypath: AnimationKeypath(keypath: "**.Color"))
     }
 }

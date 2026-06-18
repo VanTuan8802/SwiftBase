@@ -46,3 +46,11 @@
 "intro_message_2" = "再利用可能なモジュールにより、配線ではなく機能に集中できます。";
 "intro_title_3" = "リリース準備完了";
 "intro_message_3" = "実用的なデフォルトとテスト済みのナビゲーション基盤を、すぐに使えます。";
+
+/* Settings actions */
+"rate" = "評価する";
+"share" = "アプリを共有";
+"privacy_policy" = "プライバシーポリシー";
+
+/* Splash */
+"loading" = "読み込み中";

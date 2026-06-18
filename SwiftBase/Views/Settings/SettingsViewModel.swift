@@ -7,13 +7,41 @@
 
 import Foundation
 import Factory
+import StoreKit
+import UIKit
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
     @Injected(\.appFlow) private var flow
+    @Injected(\.app) private var app
 
     let appName = "SwiftBase"
     let appVersion = "1.0.0"
+
+    /// Push the language picker onto the Settings tab's navigation stack.
+    func openLanguage() {
+        app.navi.push(.language)
+    }
+
+    /// Text shared by the "Share app" row.
+    var shareMessage: String {
+        let link = AppConstants.appLi
+        return link.isEmpty ? appName : "\(appName)\n\(link)"
+    }
+
+    /// Privacy-policy destination. `nil` when not configured yet (row hidden).
+    var policyURL: URL? {
+        guard !AppConstants.policyLink.isEmpty else { return nil }
+        return URL(string: AppConstants.policyLink)
+    }
+
+    /// Native in-app review prompt (falls back silently if the OS suppresses it).
+    func rateApp() {
+        guard let scene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+        else { return }
+        SKStoreReviewController.requestReview(in: scene)
+    }
 
     func replayOnboarding() {
         flow.resetOnboarding()

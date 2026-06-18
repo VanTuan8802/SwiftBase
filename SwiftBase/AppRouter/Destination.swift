@@ -17,6 +17,7 @@ enum Destination: Equatable {
     case favorites
     case settings
     case homeDetail(id: Int)
+    case language
 }
 
 extension Destination {
@@ -27,6 +28,7 @@ extension Destination {
         case .favorites:          return "favorites"
         case .settings:           return "settings"
         case .homeDetail(let id): return "homeDetail-\(id)"
+        case .language:           return "language"
         }
     }
 }
@@ -45,6 +47,8 @@ extension Navigation {
             SettingsScreen()
         case .homeDetail(let id):
             HomeDetailScreen(id: id)
+        case .language:
+            LanguageView(mode: .settings)
         }
     }
 }

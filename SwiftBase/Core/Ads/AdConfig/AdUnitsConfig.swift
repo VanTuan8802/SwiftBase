@@ -24,8 +24,6 @@ struct AdUnitsConfig: Codable {
     // MARK: SwiftBase-specific placements
     var interHome: AdUnitConfig = AdUnitConfig()    // inter when opening a Home item → detail
     var interBack: AdUnitConfig = AdUnitConfig()    // inter on back navigation
-    var nativeHome: AdUnitConfig = AdUnitConfig()   // native on Home tab
-    var nativeDetail: AdUnitConfig = AdUnitConfig() // native on Detail screen
 
     enum CodingKeys: String, CodingKey {
         case appopenResume
@@ -40,8 +38,6 @@ struct AdUnitsConfig: Codable {
         case interAll
         case interHome
         case interBack
-        case nativeHome
-        case nativeDetail
     }
 
     init() {}
@@ -68,7 +64,5 @@ struct AdUnitsConfig: Codable {
         interAll             = try u(.interAll)
         interHome            = try u(.interHome)
         interBack            = try u(.interBack)
-        nativeHome           = try u(.nativeHome)
-        nativeDetail         = try u(.nativeDetail)
     }
 }

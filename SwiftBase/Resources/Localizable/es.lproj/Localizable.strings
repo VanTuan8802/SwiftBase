@@ -46,3 +46,11 @@
 "intro_message_2" = "Los módulos reutilizables te permiten centrarte en las funciones en lugar de la infraestructura.";
 "intro_title_3" = "Listo para publicar";
 "intro_message_3" = "Valores predeterminados sensatos y un núcleo de navegación probado, listo para usar.";
+
+/* Settings actions */
+"rate" = "Califícanos";
+"share" = "Compartir app";
+"privacy_policy" = "Política de privacidad";
+
+/* Splash */
+"loading" = "Cargando";

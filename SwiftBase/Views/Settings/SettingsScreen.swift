@@ -10,19 +10,16 @@ import SwiftUI
 struct SettingsScreen: View {
     @StateObject private var viewModel = SettingsViewModel()
     @EnvironmentObject private var coordinator: AppFlowCoordinator
-    @State private var showLanguagePicker = false
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("settings".localized)
-                .font(.largeTitle.bold())
-                .padding(.horizontal)
-                .padding(.top, 8)
+        VStack(spacing: 0) {
+            BasicHeaderView("settings".localized)
 
             List {
-                Section("general".localized) {
+                Section {
                     Button {
-                        showLanguagePicker = true
+                        viewModel.openLanguage()
                     } label: {
                         HStack {
                             Label("language".localized, systemImage: "globe")
@@ -35,27 +32,39 @@ struct SettingsScreen: View {
                         }
                     }
                     .tint(.primary)
-                }
 
-                Section("about".localized) {
-                    LabeledContent("app".localized, value: viewModel.appName)
-                    LabeledContent("version".localized, value: viewModel.appVersion)
-                }
-
-                #if DEBUG
-                Section("developer".localized) {
-                    Button(role: .destructive) {
-                        viewModel.replayOnboarding()
+                    Button {
+                        viewModel.rateApp()
                     } label: {
-                        Label("replay_onboarding".localized, systemImage: "arrow.counterclockwise")
+                        row("rate".localized, systemImage: "star.fill")
                     }
+                    .tint(.primary)
+
+                    ShareLink(item: viewModel.shareMessage) {
+                        row("share".localized, systemImage: "square.and.arrow.up")
+                    }
+                    .tint(.primary)
+
+                    Button {
+                        if let url = viewModel.policyURL { openURL(url) }
+                    } label: {
+                        row("privacy_policy".localized, systemImage: "lock.shield.fill")
+                    }
+                    .tint(.primary)
                 }
-                #endif
             }
         }
-        .sheet(isPresented: $showLanguagePicker) {
-            LanguageView(mode: .settings)
-        }
         .trackScreen(.settings)
+    }
+
+    /// A tappable settings row: leading icon + title, trailing chevron.
+    private func row(_ title: String, systemImage: String) -> some View {
+        HStack {
+            Label(title, systemImage: systemImage)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
     }
 }
