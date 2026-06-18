@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "Weiter";
+"save" = "Speichern";
+"skip" = "Überspringen";
+"next" = "Weiter";
+"get_started" = "Los geht’s";
+"back" = "Zurück";
+
+/* Tabs */
+"home" = "Start";
+"search" = "Suchen";
+"favorites" = "Favoriten";
+"settings" = "Einstellungen";
+
+/* Language picker */
+"choose_your_language" = "Wähle deine Sprache";
+"change_language_later" = "Du kannst dies später in den Einstellungen ändern.";
+"please_select_language" = "Bitte wähle deine Sprache";
+
+/* Settings */
+"general" = "Allgemein";
+"language" = "Sprache";
+"about" = "Über";
+"app" = "App";
+"version" = "Version";
+"developer" = "Entwickler";
+"replay_onboarding" = "Einführung wiederholen";
+
+/* Home */
+"item_number" = "Element %d";
+"open_next" = "Nächstes öffnen";
+"back_to_top" = "Nach oben";
+
+/* Search */
+"search_placeholder" = "Suchen…";
+"start_typing" = "Tippe los";
+"no_results_for" = "Keine Ergebnisse für „%@“";
+
+/* Favorites */
+"nothing_saved_yet" = "Noch nichts gespeichert";
+
+/* Onboarding intro */
+"intro_title_1" = "Alles an einem Ort";
+"intro_message_1" = "Ein sauberer Ausgangspunkt mit bereits eingerichteter Navigation, Tabs und Einführung.";
+"intro_title_2" = "Schneller entwickeln";
+"intro_message_2" = "Wiederverwendbare Module lassen dich auf Funktionen statt auf Infrastruktur konzentrieren.";
+"intro_title_3" = "Bereit zur Veröffentlichung";
+"intro_message_3" = "Sinnvolle Voreinstellungen und ein getesteter Navigationskern, sofort einsatzbereit.";

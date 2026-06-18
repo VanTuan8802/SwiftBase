@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "Tiếp tục";
+"save" = "Lưu";
+"skip" = "Bỏ qua";
+"next" = "Tiếp theo";
+"get_started" = "Bắt đầu";
+"back" = "Quay lại";
+
+/* Tabs */
+"home" = "Trang chủ";
+"search" = "Tìm kiếm";
+"favorites" = "Yêu thích";
+"settings" = "Cài đặt";
+
+/* Language picker */
+"choose_your_language" = "Chọn ngôn ngữ";
+"change_language_later" = "Bạn có thể thay đổi sau trong Cài đặt.";
+"please_select_language" = "Vui lòng chọn ngôn ngữ của bạn";
+
+/* Settings */
+"general" = "Chung";
+"language" = "Ngôn ngữ";
+"about" = "Giới thiệu";
+"app" = "Ứng dụng";
+"version" = "Phiên bản";
+"developer" = "Nhà phát triển";
+"replay_onboarding" = "Xem lại hướng dẫn";
+
+/* Home */
+"item_number" = "Mục %d";
+"open_next" = "Mở mục tiếp theo";
+"back_to_top" = "Về đầu trang";
+
+/* Search */
+"search_placeholder" = "Tìm kiếm…";
+"start_typing" = "Bắt đầu nhập";
+"no_results_for" = "Không có kết quả cho “%@”";
+
+/* Favorites */
+"nothing_saved_yet" = "Chưa lưu mục nào";
+
+/* Onboarding intro */
+"intro_title_1" = "Tất cả ở một nơi";
+"intro_message_1" = "Một điểm khởi đầu gọn gàng với điều hướng, tab và onboarding đã được thiết lập sẵn.";
+"intro_title_2" = "Phát triển nhanh hơn";
+"intro_message_2" = "Các module tái sử dụng giúp bạn tập trung vào tính năng thay vì hạ tầng.";
+"intro_title_3" = "Sẵn sàng phát hành";
+"intro_message_3" = "Cấu hình mặc định hợp lý và lõi điều hướng đã được kiểm thử, dùng được ngay.";

@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "Continue";
+"save" = "Save";
+"skip" = "Skip";
+"next" = "Next";
+"get_started" = "Get Started";
+"back" = "Back";
+
+/* Tabs */
+"home" = "Home";
+"search" = "Search";
+"favorites" = "Favorites";
+"settings" = "Settings";
+
+/* Language picker */
+"choose_your_language" = "Choose your language";
+"change_language_later" = "You can change this later in Settings.";
+"please_select_language" = "Please select your language";
+
+/* Settings */
+"general" = "General";
+"language" = "Language";
+"about" = "About";
+"app" = "App";
+"version" = "Version";
+"developer" = "Developer";
+"replay_onboarding" = "Replay onboarding";
+
+/* Home */
+"item_number" = "Item %d";
+"open_next" = "Open next";
+"back_to_top" = "Back to top";
+
+/* Search */
+"search_placeholder" = "Search…";
+"start_typing" = "Start typing";
+"no_results_for" = "No results for “%@”";
+
+/* Favorites */
+"nothing_saved_yet" = "Nothing saved yet";
+
+/* Onboarding intro */
+"intro_title_1" = "Everything in one place";
+"intro_message_1" = "A clean starting point with navigation, tabs and onboarding already wired up.";
+"intro_title_2" = "Build faster";
+"intro_message_2" = "Reusable modules let you focus on features instead of plumbing.";
+"intro_title_3" = "Ready to ship";
+"intro_message_3" = "Sensible defaults and a tested navigation core, straight out of the box.";

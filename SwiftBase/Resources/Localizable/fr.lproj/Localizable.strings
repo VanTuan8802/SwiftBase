@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "Continuer";
+"save" = "Enregistrer";
+"skip" = "Passer";
+"next" = "Suivant";
+"get_started" = "Commencer";
+"back" = "Retour";
+
+/* Tabs */
+"home" = "Accueil";
+"search" = "Rechercher";
+"favorites" = "Favoris";
+"settings" = "Réglages";
+
+/* Language picker */
+"choose_your_language" = "Choisissez votre langue";
+"change_language_later" = "Vous pourrez le modifier plus tard dans les Réglages.";
+"please_select_language" = "Veuillez sélectionner votre langue";
+
+/* Settings */
+"general" = "Général";
+"language" = "Langue";
+"about" = "À propos";
+"app" = "App";
+"version" = "Version";
+"developer" = "Développeur";
+"replay_onboarding" = "Revoir l’introduction";
+
+/* Home */
+"item_number" = "Élément %d";
+"open_next" = "Ouvrir le suivant";
+"back_to_top" = "Revenir en haut";
+
+/* Search */
+"search_placeholder" = "Rechercher…";
+"start_typing" = "Commencez à taper";
+"no_results_for" = "Aucun résultat pour « %@ »";
+
+/* Favorites */
+"nothing_saved_yet" = "Rien d’enregistré pour l’instant";
+
+/* Onboarding intro */
+"intro_title_1" = "Tout au même endroit";
+"intro_message_1" = "Un point de départ épuré avec la navigation, les onglets et l’introduction déjà en place.";
+"intro_title_2" = "Développez plus vite";
+"intro_message_2" = "Des modules réutilisables vous permettent de vous concentrer sur les fonctionnalités plutôt que sur la tuyauterie.";
+"intro_title_3" = "Prêt à publier";
+"intro_message_3" = "Des réglages par défaut judicieux et un cœur de navigation testé, prêts à l’emploi.";

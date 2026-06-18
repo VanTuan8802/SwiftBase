@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "続ける";
+"save" = "保存";
+"skip" = "スキップ";
+"next" = "次へ";
+"get_started" = "はじめる";
+"back" = "戻る";
+
+/* Tabs */
+"home" = "ホーム";
+"search" = "検索";
+"favorites" = "お気に入り";
+"settings" = "設定";
+
+/* Language picker */
+"choose_your_language" = "言語を選択";
+"change_language_later" = "後で設定から変更できます。";
+"please_select_language" = "言語を選択してください";
+
+/* Settings */
+"general" = "一般";
+"language" = "言語";
+"about" = "情報";
+"app" = "アプリ";
+"version" = "バージョン";
+"developer" = "開発者";
+"replay_onboarding" = "オンボーディングを再生";
+
+/* Home */
+"item_number" = "アイテム %d";
+"open_next" = "次を開く";
+"back_to_top" = "先頭へ戻る";
+
+/* Search */
+"search_placeholder" = "検索…";
+"start_typing" = "入力してください";
+"no_results_for" = "「%@」の結果がありません";
+
+/* Favorites */
+"nothing_saved_yet" = "まだ保存されていません";
+
+/* Onboarding intro */
+"intro_title_1" = "すべてをひとつに";
+"intro_message_1" = "ナビゲーション、タブ、オンボーディングがあらかじめ組み込まれた、すっきりした出発点です。";
+"intro_title_2" = "より速く開発";
+"intro_message_2" = "再利用可能なモジュールにより、配線ではなく機能に集中できます。";
+"intro_title_3" = "リリース準備完了";
+"intro_message_3" = "実用的なデフォルトとテスト済みのナビゲーション基盤を、すぐに使えます。";

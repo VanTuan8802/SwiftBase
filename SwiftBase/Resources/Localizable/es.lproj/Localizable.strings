@@ -1,0 +1,48 @@
+/* Common buttons */
+"continue" = "Continuar";
+"save" = "Guardar";
+"skip" = "Omitir";
+"next" = "Siguiente";
+"get_started" = "Empezar";
+"back" = "Atrás";
+
+/* Tabs */
+"home" = "Inicio";
+"search" = "Buscar";
+"favorites" = "Favoritos";
+"settings" = "Ajustes";
+
+/* Language picker */
+"choose_your_language" = "Elige tu idioma";
+"change_language_later" = "Puedes cambiarlo más tarde en Ajustes.";
+"please_select_language" = "Por favor, selecciona tu idioma";
+
+/* Settings */
+"general" = "General";
+"language" = "Idioma";
+"about" = "Acerca de";
+"app" = "App";
+"version" = "Versión";
+"developer" = "Desarrollador";
+"replay_onboarding" = "Repetir introducción";
+
+/* Home */
+"item_number" = "Elemento %d";
+"open_next" = "Abrir siguiente";
+"back_to_top" = "Volver arriba";
+
+/* Search */
+"search_placeholder" = "Buscar…";
+"start_typing" = "Empieza a escribir";
+"no_results_for" = "Sin resultados para “%@”";
+
+/* Favorites */
+"nothing_saved_yet" = "Aún no hay nada guardado";
+
+/* Onboarding intro */
+"intro_title_1" = "Todo en un solo lugar";
+"intro_message_1" = "Un punto de partida limpio con navegación, pestañas e introducción ya configurados.";
+"intro_title_2" = "Crea más rápido";
+"intro_message_2" = "Los módulos reutilizables te permiten centrarte en las funciones en lugar de la infraestructura.";
+"intro_title_3" = "Listo para publicar";
+"intro_message_3" = "Valores predeterminados sensatos y un núcleo de navegación probado, listo para usar.";
