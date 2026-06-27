@@ -12,6 +12,7 @@ struct AdUnitsConfig: Codable {
     // MARK: Universal (keep across apps)
     var appopenResume: AdUnitConfig = AdUnitConfig()
     var interSplash: AdUnitConfig = AdUnitConfig()
+    var openOnResumeSplash: AdUnitConfig = AdUnitConfig()
     var nativeLanguage: AdUnitConfig = AdUnitConfig()
     var nativeLanguageSelect: AdUnitConfig = AdUnitConfig()
     var nativeIntro1: AdUnitConfig = AdUnitConfig()
@@ -28,6 +29,7 @@ struct AdUnitsConfig: Codable {
     enum CodingKeys: String, CodingKey {
         case appopenResume
         case interSplash
+        case openOnResumeSplash
         case nativeLanguage
         case nativeLanguageSelect
         case nativeIntro1
@@ -54,6 +56,7 @@ struct AdUnitsConfig: Codable {
         }
         appopenResume        = try u(.appopenResume)
         interSplash          = try u(.interSplash)
+        openOnResumeSplash = try u(.openOnResumeSplash)
         nativeLanguage       = try u(.nativeLanguage)
         nativeLanguageSelect = try u(.nativeLanguageSelect)
         nativeIntro1         = try u(.nativeIntro1)

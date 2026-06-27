@@ -115,13 +115,27 @@ private extension SplashView {
         setTestDeviceIdentifiers()
         #endif
 
+        let useInterSplash = RemoteConfigManager.shared.adConfig.useInterSplash
+        let openSplashConfig = AdUtil.config.openOnResumeSplash
+        if !useInterSplash && openSplashConfig.isEnable {
+            AdsManager.shared.initAppOpenAd(
+                appOpenAdUnitId: openSplashConfig.id,
+                opacity: openSplashConfig.opacity,
+                autoEnable: false
+            )
+        }
+        
         // 4. Consent — request before app-open is wired so no ad obscures the popup.
         step = .requestingConsent
         await requestConsent()
 
         // 5. Splash interstitial — wait until it's dismissed before continuing.
         step = .showingInter
-        await showInterSplash()
+        if useInterSplash {
+            await showInterSplash()
+        } else {
+            await showOpenSplash(config: openSplashConfig)
+        }
 
         // 6. App-open on resume — init AFTER inter_splash. `autoEnable: false` keeps
         //    it muted until we explicitly un-mute below.
@@ -156,6 +170,14 @@ private extension SplashView {
     func showInterSplash() async {
         await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
             AdUtil.showInter(config: AdUtil.config.interSplash) { cont.resume() }
+        }
+    }
+    
+    func showOpenSplash(config: AdUnitConfig) async {
+        await withCheckedContinuation { cont in
+            AdUtil.showOpen(config: config) {
+                cont.resume()
+            }
         }
     }
 
